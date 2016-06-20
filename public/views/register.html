@@ -1,0 +1,6 @@
+    <div class="register" ng-controller="AccountController">
+	<h1>Register</h1>
+    	<input type="text" name="u" placeholder="Username" required="required" ng-model="user.name"/>
+        <input type="password" name="p" placeholder="Password" required="required" ng-model="user.password"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large" ng-click="signup(user)">Let me in.</button>
+</div>

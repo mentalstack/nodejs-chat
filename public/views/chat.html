@@ -1,0 +1,130 @@
+<div class="row" ng-controller="RootController">
+    <div class="col-md-12" ng-controller="ChatController">
+        <div class="panel panel-primary">
+            <div class="col-md-3">
+                <div class="username">
+                    <h3>
+                        {{userName}}
+                        <span class="glyphicon " ng-class="{'glyphicon-ok-sign': status == 'Available',
+                                                                'glyphicon-remove': status == 'Busy',
+                                                                'glyphicon-time': status == 'Away'}">
+                    </h3>
+                </div>
+                <div class="rooms">
+                    <h4>Channels</h4>
+                    <a href="" class="list-group-item" ng-repeat="room in rooms" ng-click='chooseChat(room)'>
+                        {{room.name}}
+                    </a>
+                </div>
+                <div class="users">
+                    <h4>Users</h4>
+                    <div class="list-group">
+                        <a href="" class="list-group-item" ng-repeat="user in users" ng-click='chooseChat(user)'>
+                            <span class="glyphicon " ng-class="{'glyphicon-ok-sign': user.status == 'Available',
+                                                                'glyphicon-remove': user.status == 'Busy',
+                                                                'glyphicon-time': user.status == 'Away'}">
+
+                             {{user.name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> {{currentChat.name}}
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li>
+                                <a href="">
+                                    <span class="glyphicon glyphicon-ok-sign">
+                                    </span>Available
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="glyphicon glyphicon-remove">
+                                    </span>Busy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    Away
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="" ng-click="logout()">
+                                    <span class="glyphicon glyphicon-off"></span>
+                                    Sign Out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                    </small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="chat" ng-repeat="chat in chats">
+                        <li class="clearfix"  ng-repeat="message in chat.messages" ng-class="{ 'right': message.sender == userName,
+                                                                                               'left': message.sender != userName }">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{message.createdDatedate:"h:mma"}}</small>
+                                    <strong class="pull-right primary-font">{{message.sender}}</strong>
+                                </div>
+                                <p>
+                                    {{message.content}}
+                                </p>                                                            
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." ng-model="message" on-enter-click="sendMessage()">
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat" ng-click="sendMessage()">
+                                Send
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
